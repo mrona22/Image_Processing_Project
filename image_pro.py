@@ -72,7 +72,6 @@ class RGBImage:
         >>> img.size()
         (1, 2)
         """
-        # YOUR CODE GOES HERE #
         return (self.num_rows, self.num_cols)
 
     def get_pixels(self):
@@ -96,7 +95,6 @@ class RGBImage:
         >>> id(pixels[0][0]) != id(img_pixels[0][0]) # Check pixel
         True
         """
-        # YOUR CODE GOES HERE #
         return [[[i[0], i[1], i[2]] for i in j] for j in self.pixels]
 
 
@@ -116,7 +114,6 @@ class RGBImage:
         >>> id(img_copy) != id(img)
         True
         """
-        # YOUR CODE GOES HERE #
         copied_img = self.get_pixels()
         #new_instance = RGBImage(copied_img)
 
@@ -143,7 +140,6 @@ class RGBImage:
         >>> img.get_pixel(0, 0)
         (255, 255, 255)
         """
-        # YOUR CODE GOES HERE #
         #if type(row) != int or type(col) != int:
             #raise TypeError
         if row < 0 or col < 0:
@@ -180,7 +176,6 @@ class RGBImage:
         >>> img.pixels
         [[[255, 0, 0], [0, 0, 0]]]
         """
-        # YOUR CODE GOES HERE #
         if not (isinstance(row,int) and isinstance(col, int)):
             raise TypeError
         try:
@@ -200,7 +195,6 @@ class RGBImage:
         return 
 
 
-# Part 2: Image Processing Template Methods #
 class ImageProcessingTemplate:
     """
     TODO: a class for images and to keep track of cost 
@@ -216,7 +210,6 @@ class ImageProcessingTemplate:
         >>> img_proc.cost
         0
         """
-        # YOUR CODE GOES HERE #
         self.cost = 0
 
     def get_cost(self):
@@ -229,7 +222,6 @@ class ImageProcessingTemplate:
         >>> img_proc.get_cost()
         50
         """
-        # YOUR CODE GOES HERE #
         return self.cost
 
     def negate(self, image):
@@ -261,7 +253,6 @@ class ImageProcessingTemplate:
         True
         >>> img_save_helper('img/out/gradient_16x16_negate.png', img_negate)# 6
         """
-        # YOUR CODE GOES HERE #
 
         negative_img = [
         [[255 - i for i in j] 
@@ -289,7 +280,6 @@ class ImageProcessingTemplate:
         True
         >>> img_save_helper('img/out/gradient_16x16_gray.png', img_gray)
         """
-        # YOUR CODE GOES HERE #
         gray_scale_img = [[
         [sum(j) // len(j), sum(j) // len(j), sum(j) // len(j)] for j in i] 
         for i in image.get_pixels()]
@@ -310,7 +300,6 @@ class ImageProcessingTemplate:
         True
         >>> img_save_helper('img/out/gradient_16x16_rotate.png', img_rotate)
         """
-        # YOUR CODE GOES HERE #
         rotated_img = [i[::-1] for i in image.get_pixels()][::-1]
 
         #rotated_img = [i.reverse() for i in image.pixels].reverse()
@@ -318,7 +307,6 @@ class ImageProcessingTemplate:
         return RGBImage(rotated_img)
 
 
-# Part 3: Standard Image Processing Methods #
 class StandardImageProcessing(ImageProcessingTemplate):
     """
     # A class for image processing, ImageProcessingTemplate is its super#
@@ -334,7 +322,6 @@ class StandardImageProcessing(ImageProcessingTemplate):
         >>> img_proc.cost
         0
         """
-        # YOUR CODE GOES HERE #
         self.cost = 0
         self.number_of_rotates = 0
         self.coupon = 0
@@ -372,7 +359,6 @@ class StandardImageProcessing(ImageProcessingTemplate):
         # grayscale's the image and updates cost to 6 # 
 
         """
-        # YOUR CODE GOES HERE #
         if self.coupon > 0:
             self.coupon -= 1
         else :
@@ -395,7 +381,6 @@ class StandardImageProcessing(ImageProcessingTemplate):
         0
         """
 
-        # YOUR CODE GOES HERE #
         self.number_of_rotates += 1
         if self.coupon > 0:
             self.coupon -= 1
@@ -430,7 +415,6 @@ class StandardImageProcessing(ImageProcessingTemplate):
         return 
 
 
-# Part 4: Premium Image Processing Methods #
 class PremiumImageProcessing(ImageProcessingTemplate):
     """
     # A class with initialized cost, with super ImageProcessingTemplate#
@@ -438,14 +422,12 @@ class PremiumImageProcessing(ImageProcessingTemplate):
 
     def __init__(self):
         """
-        TODO: add description
 
         # Check the expected cost
         >>> img_proc = PremiumImageProcessing()
         >>> img_proc.get_cost()
         50
         """
-        # YOUR CODE GOES HERE #
         self.cost = 50
 
     def chroma_key(self, chroma_image, background_image, color):
@@ -464,7 +446,6 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/square_16x16_chroma.png', img_chroma)
         """
-        # YOUR CODE GOES HERE #
         if not all([isinstance(chroma_image, RGBImage),isinstance(
             background_image, RGBImage)]):
             raise TypeError
@@ -510,7 +491,6 @@ class PremiumImageProcessing(ImageProcessingTemplate):
         True
         >>> img_save_helper('img/out/square_16x16_sticker.png', img_combined)
         """
-        # YOUR CODE GOES HERE #
         if not all([isinstance(sticker_image, RGBImage),isinstance(
             background_image, RGBImage)]):
             raise TypeError
@@ -537,7 +517,6 @@ class PremiumImageProcessing(ImageProcessingTemplate):
 
 
 
-# Part 5: Image KNN Classifier #
 class ImageKNNClassifier:
     """
     # A class that finds the group of the picture #
@@ -548,7 +527,6 @@ class ImageKNNClassifier:
         # Takes in a class attribute that finds from the n nearest neibor the
         most common group #
         """
-        # YOUR CODE GOES HERE #
         self.n_neighbors = n_neighbors
         self.data = []
 
@@ -588,7 +566,6 @@ class ImageKNNClassifier:
         >>> print(knn.predict(RGBImage(create_random_pixels(180, 255, 300, 300))))
         high
         """
-        # YOUR CODE GOES HERE #
         if len(data) < self.n_neighbors:
             raise ValueError
         if len(self.data) != 0:
@@ -601,7 +578,6 @@ class ImageKNNClassifier:
         # calculates the Eucledian distance from pixels of 2 images of the 
         same size# 
         """
-        # YOUR CODE GOES HERE #
         if not all([isinstance(image1, RGBImage), isinstance(
             image2, RGBImage)]):
             raise TypeError
@@ -629,7 +605,6 @@ class ImageKNNClassifier:
         # Returns the most common element from the second index of a list of
         tuples #
         """
-        # YOUR CODE GOES HERE #
         lst_of_labels = [i[1] for i in candidates]
         most_common = max(set(lst_of_labels), key = lst_of_labels.count)
         return most_common
@@ -639,7 +614,6 @@ class ImageKNNClassifier:
         """
         # Predicts for an image what group of images it is the closest to #
         """
-        # YOUR CODE GOES HERE #
         if len(self.data) == 0:
             raise ValueError
         all_dis_n_labl = [(ImageKNNClassifier.distance(image, i[0]), i[1])
