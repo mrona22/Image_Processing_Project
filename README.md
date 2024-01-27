@@ -23,6 +23,16 @@ This Python project includes classes for working with RGB images and implementin
 - It includes a `redeem_coupon()` method, allowing the user to redeem a coupon for a specified number of free image processing operations.
 - The `negate()`, `grayscale()`, and `rotate_180()` methods in this class update the cost attribute based on the number of times the operations are performed.
 
+4. **PremiumImageProcessing Class**
+- Unlock advanced image manipulation with the PremiumImageProcessing class. Use the `chroma_key()` method to seamlessly replace pixels in one image with those from another based on a specified color, perfect for creating captivating compositions.
+- The `sticker()` method lets you overlay images, allowing for playful additions like emojis or logos to your pictures.
+
+5. **ImageKNNClassifier Class**
+- Train the classifier on labeled images and predict the label of a new image based on its nearest neighbors.
+- Grouping images based on visual characteristics. Experiment with different `n_neighbors` values to find the optimal balance between precision and efficiency.
+
+
+
 
 ## Usage
 
